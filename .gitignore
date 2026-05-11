@@ -1,0 +1,18 @@
+# Java / Maven / Spring Boot
+/target/
+*.log
+*.class
+*.jar
+*.war
+*.iml
+/.idea/
+/.vscode/
+.DS_Store
+
+# Sistema operativo
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Otros
+.env
