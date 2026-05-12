@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: despacho-mysql
+    environment:
+      MYSQL_DATABASE: despacho_db
+      MYSQL_USER: despacho_user
+      MYSQL_PASSWORD: monsalve1974
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+
+  backend:
+    image: despacho-backend
+    container_name: despacho-backend
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/despacho_db?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: despacho_user
+      SPRING_DATASOURCE_PASSWORD: monsalve1974
+    ports:
+      - "8081:8081"
+    restart: always
+
+volumes:
+  mysql_data:
