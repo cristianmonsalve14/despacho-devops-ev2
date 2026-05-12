@@ -1,3 +1,15 @@
+
+## Ejecución con Docker
+
+### Build de la imagen Docker
+
+Desde la carpeta `Springboot-API-REST-DESPACHO`:
+
+```sh
+docker build -t despacho-backend .
+```
+
+Luego, utiliza el archivo docker-compose.yml unificado en la raíz del proyecto para levantar todos los servicios.
 # despacho-devops-ev2
 
 Microservicio Spring Boot para la gestión de despachos de productos. Permite registrar, consultar, actualizar y eliminar información de despachos, integrándose con otros servicios del sistema.
