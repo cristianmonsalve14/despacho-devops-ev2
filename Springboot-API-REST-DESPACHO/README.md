@@ -8,22 +8,34 @@ Microservicio Spring Boot para la gestión de despachos de productos. Permite re
 - Documentación Swagger.
 - Listo para desarrollo local y despliegue en Docker.
 
+
 ## Requisitos previos
 - Java 21
 - Maven 3.8+
-- Docker y Docker Compose
+- Docker
 - Git
 
-## Ejecución con Docker Compose
+## Ejecución con Docker
 
-1. Construye la imagen y levanta los servicios:
+1. Construye la imagen Docker:
    ```sh
-   docker-compose up --build
+   docker build -t despacho-backend .
    ```
-2. El backend estará disponible en: [http://localhost:8081](http://localhost:8081)
+2. Ejecuta el contenedor:
+   ```sh
+   docker run -d -p 8081:8081 \
+     -e SPRING_DATASOURCE_URL="<jdbc_url>" \
+     -e SPRING_DATASOURCE_USERNAME="<usuario>" \
+     -e SPRING_DATASOURCE_PASSWORD="<contraseña>" \
+     despacho-backend
+   ```
+   El backend estará disponible en: [http://localhost:8081](http://localhost:8081)
 
 ## Variables de entorno importantes
-Las credenciales y URL de la base de datos se configuran automáticamente en docker-compose.yml.
+Debes definir las variables de entorno para la conexión a la base de datos al ejecutar el contenedor:
+- `SPRING_DATASOURCE_URL`
+- `SPRING_DATASOURCE_USERNAME`
+- `SPRING_DATASOURCE_PASSWORD`
 
 ## Endpoints principales
 - `GET /api/despachos` — Listar todos los despachos
